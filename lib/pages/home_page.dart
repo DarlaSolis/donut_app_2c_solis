@@ -1,5 +1,5 @@
 import 'package:donut_app_2c_solis/tabs/burger_tab.dart';
-import 'package:donut_app_2c_solis/tabs/donnut_tab.dart';
+import 'package:donut_app_2c_solis/tabs/donut_tab.dart';
 import 'package:donut_app_2c_solis/tabs/pancakes_tab.dart';
 import 'package:donut_app_2c_solis/tabs/pizza_tab.dart';
 import 'package:donut_app_2c_solis/tabs/smoothie_tab.dart';
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: TabBarView(
                   children: [
-                    DonnutTab(),
+                    DonutTab(),
                     BurgerTab(),
                     SmoothieTab(),
                     PancakesTab(),
