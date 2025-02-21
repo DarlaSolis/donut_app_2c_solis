@@ -30,9 +30,9 @@ class DonutTab extends StatelessWidget {
         //cada elemento individual
         return DonutTile(
           donutFlavor: donutsOnSale[index][0],
-          donutFlavor: donutsOnSale[index][1],
-          donutFlavor: donutsOnSale[index][2],
-          donutFlavor: donutsOnSale[index][3],
+          donutPrice: donutsOnSale[index][1],
+          donutColor: donutsOnSale[index][2],
+          imageName: donutsOnSale[index][3],
         );
       },
     );
