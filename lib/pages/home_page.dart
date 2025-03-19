@@ -71,8 +71,50 @@ class _HomePageState extends State<HomePage> {
                     PizzaTab()
                   ],
                 ),
-              )
+              ),
               //Carrito (Cart)
+              Container(
+                color: Colors.white,
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  //Alinear los elementos a los extremos
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        //Alinear horizontalmente una columna
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                              "2 Items | \$45"),
+                          Text('Delivery Charges Incluted'),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.pink,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 12)),
+                        child: Row(
+                          children: [
+                            Icon(Icons.shopping_cart, color: Colors.white),
+                            SizedBox(width: 10),
+                            Text(
+                              'View  Cart',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ))
+                  ],
+                ),
+              )
             ],
           )),
     );

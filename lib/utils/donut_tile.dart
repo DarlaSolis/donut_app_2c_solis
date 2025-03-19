@@ -72,11 +72,11 @@ class DonutTile extends StatelessWidget {
 
             //Iconos
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(11),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.favorite),
+                  Icon(Icons.favorite_border),
                   Icon(Icons.add),
                 ],
               ),
