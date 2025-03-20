@@ -1,76 +1,99 @@
+import 'package:donut_app_2c_solis/models/product.dart';
 import 'package:flutter/material.dart';
-import 'package:donut_app_2c_solis/utils/donut_tile.dart';
+import 'package:donut_app_2c_solis/utils/products_tile.dart';
 
 class SmoothieTab extends StatelessWidget {
-  final List donutsOnSale = [
-    // [ donutFlavor, donutPrice, donutColor, imageName ]
-
+  final Function(Product) addToCart;
+  //Lista de Donas
+  final List smoothiesOnSale = [
     [
-      "Ice Cream",
-      "Krispy Kreme",
-      "36",
+      "Banana Smoothie",
+      "Fruity Blend",
+      "25",
+      Colors.yellow,
+      "lib/images/SmoothieBanana.png"
+    ],
+    [
+      "Avocado Smoothie",
+      "Green Goodness",
+      "30",
+      Colors.green,
+      "lib/images/SmoothieAvocado.png"
+    ],
+    [
+      "Blueberry Smoothie",
+      "Berry Boost",
+      "28",
       Colors.blue,
-      "lib/images/icecream_donut.png"
+      "lib/images/SmoothieBlueberry.png"
     ],
-
     [
-      "Strawberry",
-      "Donkey Donuts",
-      "45",
+      "Lemon Smoothie",
+      "Citrus Splash",
+      "22",
+      Colors.yellow,
+      "lib/images/SmoothieLemon.png"
+    ],
+    [
+      "Orange Smoothie",
+      "Orange Zest",
+      "24",
+      Colors.orange,
+      "lib/images/SmoothieOrange.png"
+    ],
+    [
+      "Strawberry Smoothie",
+      "Berry Bliss",
+      "26",
+      Colors.pink,
+      "lib/images/SmoothieStrawberry.png"
+    ],
+    [
+      "Watermelon Smoothie",
+      "Summer Refresh",
+      "27",
       Colors.red,
-      "lib/images/strawberry_donut.png"
+      "lib/images/SmoothieWatermelon.png"
     ],
-
-    ["Grape Ape", "Aurrerá", "84", Colors.purple, "lib/images/grape_donut.png"],
-
-    ["Choco", "Costco", "95", Colors.brown, "lib/images/chocolate_donut.png"],
-
     [
-      "Ice Cream",
-      "Krispy Kreme",
-      "36",
-      Colors.blue,
-      "lib/images/icecream_donut.png"
+      "Tropical Smoothie",
+      "Tropical Mix",
+      "29",
+      Colors.yellow,
+      "lib/images/SmoothieBanana.png"
     ],
-
-    [
-      "Strawberry",
-      "Donkey Donuts",
-      "45",
-      Colors.red,
-      "lib/images/strawberry_donut.png"
-    ],
-
-    ["Grape Ape", "Aurrerá", "84", Colors.purple, "lib/images/grape_donut.png"],
-
-    ["Choco", "Costco", "95", Colors.brown, "lib/images/chocolate_donut.png"],
   ];
-  SmoothieTab({super.key});
+  SmoothieTab({super.key, required this.addToCart});
 
   @override
   Widget build(BuildContext context) {
     //widget para usar cuadricula
     return GridView.builder(
-      //Cuantos elementos hay en una cuadricula
-      itemCount: donutsOnSale.length,
-      padding: EdgeInsets.all(12),
-      //Organizan como se veran/distribuiran los elmentos
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //Cuántas colu mnas usare
-        crossAxisCount: 2,
-        //Relación de aspecto (proporción)
-        childAspectRatio: 1 / 1.5,
-      ),
-      itemBuilder: (context, index) {
-        //cada elemento individual
-        return DonutTile(
-          donutFlavor: donutsOnSale[index][0],
-          donutStore: donutsOnSale[index][1],
-          donutPrice: donutsOnSale[index][2],
-          donutColor: donutsOnSale[index][3],
-          imageName: donutsOnSale[index][4],
-        );
-      },
-    );
+        //Cuantos elementos hay en una cuadricula
+        itemCount: smoothiesOnSale.length,
+        padding: EdgeInsets.all(12),
+        //Organizan como se veran/distribuiran los elmentos
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //Cuántas colu mnas usare
+          crossAxisCount: 2,
+          //Relación de aspecto (proporción)
+          childAspectRatio: 1 / 1.5,
+        ),
+        itemBuilder: (context, index) {
+          //cada elemento individual
+          return ProductTile(
+              productFlavor: smoothiesOnSale[index][0],
+              productStore: smoothiesOnSale[index][1],
+              productPrice: smoothiesOnSale[index][2].toString(),
+              productColor: smoothiesOnSale[index][3],
+              imageName: smoothiesOnSale[index][4],
+              onAddToCart: () {
+                double price = double.parse(smoothiesOnSale[index][2]);
+                addToCart(Product(
+                  name: smoothiesOnSale[index][0],
+                  price: price,
+                ));
+              });
+        });
   }
 }

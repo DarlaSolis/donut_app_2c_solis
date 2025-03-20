@@ -4,6 +4,7 @@ import 'package:donut_app_2c_solis/tabs/pancakes_tab.dart';
 import 'package:donut_app_2c_solis/tabs/pizza_tab.dart';
 import 'package:donut_app_2c_solis/tabs/smoothie_tab.dart';
 import 'package:donut_app_2c_solis/utils/my_tab.dart';
+import 'package:donut_app_2c_solis/models/product.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +22,17 @@ class _HomePageState extends State<HomePage> {
     const MyTab(iconPath: 'lib/icons/pancakes.png'),
     const MyTab(iconPath: 'lib/icons/pizza.png')
   ];
+  // Estado del carrito
+  List<Product> cartItems = [];
+  double totalPrice = 0.0;
+
+  // Método para agregar un producto al carrito
+  void addToCart(Product product) {
+    setState(() {
+      cartItems.add(product);
+      totalPrice += product.price;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +76,11 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: TabBarView(
                   children: [
-                    DonutTab(),
-                    BurgerTab(),
-                    SmoothieTab(),
-                    PancakesTab(),
-                    PizzaTab()
+                    DonutTab(addToCart: addToCart),
+                    BurgerTab(addToCart: addToCart),
+                    SmoothieTab(addToCart: addToCart),
+                    PancakesTab(addToCart: addToCart),
+                    PizzaTab(addToCart: addToCart)
                   ],
                 ),
               ),
@@ -81,16 +93,20 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                         //Alinear horizontalmente una columna
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
+                              "${cartItems.length} items | \$${totalPrice.toStringAsFixed(2)}",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
-                              "2 Items | \$45"),
-                          Text('Delivery Charges Incluted'),
+                                //tamaño de letra
+                                fontSize: 18,
+                                //negritas
+                                fontWeight: FontWeight.bold,
+                              )),
+                          Text("Delivery Charges Included"),
                         ],
                       ),
                     ),
